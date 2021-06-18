@@ -41,18 +41,11 @@ namespace CursoAspNetCore
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
-            var livros = new List<Livro>();
-            livros.Add(new Livro("001", "Quem mexeu na minha Query?", 12.99));
-            livros.Add(new Livro("002", "Fique rico com C#", 29.99));
-            livros.Add(new Livro("003", "Java para iniciantes", 18.99));
-
+            Catalogo catalogo = new Catalogo();
+            Relatorio relatorio = new Relatorio(catalogo);
             app.Run(async (context) =>
             {
-                foreach (var livro in livros)
-                {
-                    await context.Response.WriteAsync($"{livro.Codigo,-10} {livro.Nome,-40} {livro.Preco.ToString("C"),10} \r\n");
-                }
+                await relatorio.Imprimir(context);
             });
             //app.UseHttpsRedirection();
             //app.UseStaticFiles();
