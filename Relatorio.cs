@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace CursoAspNetCore
 {
-    public class Relatorio
+    public class Relatorio : IRelatorio
     {
-        private readonly Catalogo catalogo;
-        public Relatorio(Catalogo catalogo)
+        private readonly ICatalogo catalogo;
+        public Relatorio(ICatalogo catalogo)
         {
             this.catalogo = catalogo;
         }
