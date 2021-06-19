@@ -73,6 +73,7 @@ namespace CursoAspNetCore
                     pattern: "{controller=Pedido}/{action=Carrossel}/{id?}");
             });
 
+            serviceProvider.GetService<ApplicationContext>().Database.EnsureCreated();
         }
     }
 }
