@@ -23,8 +23,6 @@ D:\Cursos Alura\CursoAspNetCore\obj\Debug\net5.0\scopedcss\bundle\CursoAspNetCor
 D:\Cursos Alura\CursoAspNetCore\obj\Debug\net5.0\CursoAspNetCore.TagHelpers.input.cache
 D:\Cursos Alura\CursoAspNetCore\obj\Debug\net5.0\CursoAspNetCore.TagHelpers.output.cache
 D:\Cursos Alura\CursoAspNetCore\obj\Debug\net5.0\CursoAspNetCore.RazorCoreGenerate.cache
-D:\Cursos Alura\CursoAspNetCore\obj\Debug\net5.0\Razor\Views\Home\Index.cshtml.g.cs
-D:\Cursos Alura\CursoAspNetCore\obj\Debug\net5.0\Razor\Views\Home\Privacy.cshtml.g.cs
 D:\Cursos Alura\CursoAspNetCore\obj\Debug\net5.0\Razor\Views\Shared\Error.cshtml.g.cs
 D:\Cursos Alura\CursoAspNetCore\obj\Debug\net5.0\Razor\Views\Shared\_Layout.cshtml.g.cs
 D:\Cursos Alura\CursoAspNetCore\obj\Debug\net5.0\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs

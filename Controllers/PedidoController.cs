@@ -8,11 +8,21 @@ namespace CursoAspNetCore.Controllers
 {
     public class PedidoController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Resumo()
         {
             return View();
         }
         public IActionResult Carrossel()
+        {
+
+            return View();
+        }
+        public IActionResult Carrinho()
+        {
+
+            return View();
+        }
+        public IActionResult Cadastro()
         {
 
             return View();
