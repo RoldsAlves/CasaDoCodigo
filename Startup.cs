@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using System;
+using CursoAspNetCore.Repositories;
 
 namespace CursoAspNetCore
 {
@@ -31,6 +32,7 @@ namespace CursoAspNetCore
             );
 
             services.AddTransient<IDataService, DataService>();
+            services.AddTransient<IProdutoRepository, ProdutoRepository>();
             //services.AddTransient<ICatalogo, Catalogo>();
             //services.AddTransient<IRelatorio, Relatorio>();
 
