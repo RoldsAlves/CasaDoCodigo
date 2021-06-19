@@ -33,6 +33,9 @@ namespace CursoAspNetCore
 
             services.AddTransient<IDataService, DataService>();
             services.AddTransient<IProdutoRepository, ProdutoRepository>();
+            services.AddTransient<IPedidoRepository, PedidoRepository>();
+            services.AddTransient<ICadastroRepository, CadastroRepository>();
+            services.AddTransient<IItemPedidoRepository, ItemPedidoRepository>();
             //services.AddTransient<ICatalogo, Catalogo>();
             //services.AddTransient<IRelatorio, Relatorio>();
 
