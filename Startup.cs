@@ -25,6 +25,8 @@ namespace CursoAspNetCore
             services.AddControllersWithViews();
             services.AddApplicationInsightsTelemetry();
             services.AddMvc();
+            services.AddDistributedMemoryCache();
+            services.AddSession();
 
             string connectionString = Configuration.GetConnectionString("Default");
             services.AddDbContext<ApplicationContext>(options =>
@@ -68,7 +70,7 @@ namespace CursoAspNetCore
             //});
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseSession();
             app.UseRouting();
 
             app.UseAuthorization();
