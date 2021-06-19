@@ -15,6 +15,11 @@ namespace CursoAspNetCore.Repositories
             this.context = context;
         }
 
+        public IList<Produto> GetProdutos()
+        {
+            return context.Set<Produto>().ToList();
+        }
+
         public void SaveProdutos(List<Livro> livros)
         {
             foreach (var livro in livros)
