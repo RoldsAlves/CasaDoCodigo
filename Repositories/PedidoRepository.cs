@@ -10,6 +10,7 @@ namespace CursoAspNetCore.Repositories
     public interface IPedidoRepository
     {
         Pedido GetPedido();
+        void AddItem(string codigo);
     }
     public class PedidoRepository : BaseRepository<Pedido>, IPedidoRepository
     {
@@ -29,6 +30,7 @@ namespace CursoAspNetCore.Repositories
                 pedido = new Pedido();
                 dbSet.Add(pedido);
                 context.SaveChanges();
+                SetPedidoId(pedido.Id);
             }
 
             return pedido;
