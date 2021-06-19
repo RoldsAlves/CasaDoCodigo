@@ -1,4 +1,5 @@
-﻿using CursoAspNetCore.Repositories;
+﻿using CursoAspNetCore.Models;
+using CursoAspNetCore.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,28 +11,30 @@ namespace CursoAspNetCore.Controllers
     public class PedidoController : Controller
     {
         private readonly IProdutoRepository produtoRepository;
+        private readonly IPedidoRepository pedidoRepository;
 
-        public PedidoController(IProdutoRepository produtoRepository)
+        public PedidoController(IProdutoRepository produtoRepository, IPedidoRepository pedidoRepository)
         {
             this.produtoRepository = produtoRepository;
+            this.pedidoRepository = pedidoRepository;
         }
 
-        public IActionResult Resumo()
-        {
-            return View();
-        }
         public IActionResult Carrossel()
         {
             return View(produtoRepository.GetProdutos());
         }
         public IActionResult Carrinho()
         {
-
-            return View();
+            Pedido pedido = pedidoRepository.GetPedido();
+            return View(pedido.Itens);
         }
         public IActionResult Cadastro()
         {
 
+            return View();
+        }
+        public IActionResult Resumo()
+        {
             return View();
         }
     }

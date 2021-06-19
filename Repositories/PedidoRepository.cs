@@ -9,7 +9,7 @@ namespace CursoAspNetCore.Repositories
 {
     public interface IPedidoRepository
     {
-
+        Pedido GetPedido();
     }
     public class PedidoRepository : BaseRepository<Pedido>, IPedidoRepository
     {
@@ -17,6 +17,21 @@ namespace CursoAspNetCore.Repositories
         public PedidoRepository(ApplicationContext context, IHttpContextAccessor contextAccessor) : base(context)
         {
             this.contextAcessor = contextAccessor;
+        }
+
+        public Pedido GetPedido()
+        {
+            var pedidoId = GetPedidoId();
+            var pedido = dbSet.Where(p => p.Id == pedidoId).SingleOrDefault();
+
+            if(pedido == null)
+            {
+                pedido = new Pedido();
+                dbSet.Add(pedido);
+                context.SaveChanges();
+            }
+
+            return pedido;
         }
 
         private int? GetPedidoId()
