@@ -15,6 +15,5 @@ namespace CursoAspNetCore.Repositories
         public CadastroRepository(ApplicationContext context) : base(context)
         {
         }
-    {
     }
 }
