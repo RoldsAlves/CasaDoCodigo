@@ -9,7 +9,7 @@ using System;
 
 namespace CursoAspNetCore
 {
-    public class Startup
+    public partial class Startup
     {
         public Startup(IConfiguration configuration)
         {
@@ -29,6 +29,8 @@ namespace CursoAspNetCore
             services.AddDbContext<ApplicationContext>(options =>
                 options.UseSqlServer(connectionString)
             );
+
+            services.AddTransient<IDataService, DataService>();
             //services.AddTransient<ICatalogo, Catalogo>();
             //services.AddTransient<IRelatorio, Relatorio>();
 
@@ -73,7 +75,7 @@ namespace CursoAspNetCore
                     pattern: "{controller=Pedido}/{action=Carrossel}/{id?}");
             });
 
-            serviceProvider.GetService<ApplicationContext>().Database.Migrate();
+            serviceProvider.GetService<DataService>().InicializarDB();
         }
     }
 }
