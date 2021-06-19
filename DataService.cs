@@ -1,5 +1,6 @@
 ﻿using CursoAspNetCore.Models;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.IO;
 
 namespace CursoAspNetCore
@@ -20,7 +21,7 @@ namespace CursoAspNetCore
                 context.Database.EnsureCreated();
 
                 var json = File.ReadAllText("livros.json");
-                JsonConvert.DeserializeObject<>
+                var livros = JsonConvert.DeserializeObject<List<Livro>>(json);
             }
         }
 
