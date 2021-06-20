@@ -90,8 +90,12 @@
 @section Scripts{
     <script type="text/javascript">
         function clickIncremento(btn) {
+            var linhaDoItem = $(btn).parents('[item-id]');
+            var itemId = $(linhaDoItem).attr('item-id');
+            var novaQtde = $(linhaDoItem).find('input').val();
+            //var novaQtde = parseint($(linhaDoItem).find('input').val());
+            //novaQtde++;
             debugger;
-            var itemId = $(btn).attr('item-id');
         }
     </script>
 }
