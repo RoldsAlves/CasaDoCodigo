@@ -26,8 +26,15 @@ using CasaDoCodigo.Models;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 3 "D:\Cursos Alura\CasaDoCodigo\Views\_ViewImports.cshtml"
+using CasaDoCodigo.Models.ViewModels;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"cb148420807c8d9629c84ffe99a717812fc6e278", @"/Views/Pedido/Resumo.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"f425103b9042481fbdd49f3917720d72e9a0d106", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"614a64d9d2747c37e45b6aab27c29a08eb8a373b", @"/Views/_ViewImports.cshtml")]
     public class Views_Pedido_Resumo : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<CasaDoCodigo.Models.Pedido>
     {
         #pragma warning disable 1998
