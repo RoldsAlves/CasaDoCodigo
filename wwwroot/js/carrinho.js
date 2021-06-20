@@ -35,13 +35,15 @@
             data: JSON.stringify(data)
         }).done(function (response) {
             let itemPedido = response.itemPedido;
-            let carrinhoViewModel = response.carrinhoViewModel;
-
-            console.log(JSON.stringify(itemPedido));
-            console.log(JSON.stringify(carrinhoViewModel));
-            location.reload();
+            let linhaDoItem = $('[item-id=' + itemPedido.id + ']');
+            linhaDoItem.find('input').val(itemPedido.quantidade);
+            linhaDoItem.find('[subtotal]').html((itemPedido.subtotal).duasCasas());
         });
     }
 }
 
 var carrinho = new Carrinho();
+
+Number.prototype.duasCasas = function () {
+    return this.toFixed(2).replace('.', ',');
+}
