@@ -97,14 +97,18 @@
                 Id: itemId,
                 Quantidade: novaQtde
             }
+            novaQtde = postQuantidade(data);
+           
+            debugger;
+        }
 
+        function postQuantidade(data) {
             $.ajax({
                 url: '/Pedido/UpdateQuantidade',
                 type: 'POST',
                 contentType: 'application/JSON',
                 data: JSON.stringify(data)
             });
-            //debugger;
         }
     </script>
 }
