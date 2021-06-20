@@ -3,14 +3,12 @@
         let data = this.getData(btn);
         data.Quantidade++;
         this.postQuantidade(data);
-        debugger;
     }
 
     clickDecremento(btn) {
-        this.getData(btn);
+        let data = this.getData(btn);
         data.Quantidade--;
-        this.postQuantidade(data);        
-        debugger;
+        this.postQuantidade(data); 
     }
 
     getData(elemento) {
