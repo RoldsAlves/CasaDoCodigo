@@ -1,12 +1,12 @@
-﻿using CursoAspNetCore.Models;
-using CursoAspNetCore.Repositories;
+﻿using CasaDoCodigo.Models;
+using CasaDoCodigo.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CursoAspNetCore.Controllers
+namespace CasaDoCodigo.Controllers
 {
     public class PedidoController : Controller
     {

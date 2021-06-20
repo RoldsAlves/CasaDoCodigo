@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CursoAspNetCore.Models
+namespace CasaDoCodigo.Models
 {
     public class ApplicationContext : DbContext
     {

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
 
-namespace CursoAspNetCore.Models
+namespace CasaDoCodigo.Models
 {
     [DataContract]
     public class BaseModel

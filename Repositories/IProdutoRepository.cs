@@ -1,7 +1,7 @@
-﻿using CursoAspNetCore.Models;
+﻿using CasaDoCodigo.Models;
 using System.Collections.Generic;
 
-namespace CursoAspNetCore.Repositories
+namespace CasaDoCodigo.Repositories
 {
     public interface IProdutoRepository
     {

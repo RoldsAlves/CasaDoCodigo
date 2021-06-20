@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace CursoAspNetCore.Migrations
+namespace CasaDoCodigo.Migrations
 {
     public partial class Inicial : Migration
     {

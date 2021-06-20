@@ -1,4 +1,4 @@
-﻿using CursoAspNetCore.Models;
+﻿using CasaDoCodigo.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CursoAspNetCore.Repositories
+namespace CasaDoCodigo.Repositories
 {
     public interface IPedidoRepository
     {

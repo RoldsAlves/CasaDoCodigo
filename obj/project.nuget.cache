@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "O1pqgBaZiETj8vWUMwAPQ4CGIsr+N+RgyDxWUOC+0TNJ9bhIBqAj16h61RvLiTkGW0fumqQBQ8dHS5pEkuVwtQ==",
+  "dgSpecHash": "zt+L4+QVc6kWxiwb1dGLTcfB56zx+9WFArBYF8cHtTYD7+WyR/0HaQdhofzMfd458mp1V+sfGRsey5Zs5MIgHw==",
   "success": true,
-  "projectFilePath": "D:\\Cursos Alura\\CursoAspNetCore\\CursoAspNetCore.csproj",
+  "projectFilePath": "D:\\Cursos Alura\\CasaDoCodigo\\CasaDoCodigo.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\rodol\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\rodol\\.nuget\\packages\\microsoft.applicationinsights\\2.17.0\\microsoft.applicationinsights.2.17.0.nupkg.sha512",

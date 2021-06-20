@@ -1,10 +1,10 @@
-﻿using CursoAspNetCore.Models;
-using CursoAspNetCore.Repositories;
+﻿using CasaDoCodigo.Models;
+using CasaDoCodigo.Repositories;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
 
-namespace CursoAspNetCore
+namespace CasaDoCodigo
 {
     public partial class Startup
     {

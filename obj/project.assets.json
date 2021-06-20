@@ -6641,11 +6641,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Cursos Alura\\CursoAspNetCore\\CursoAspNetCore.csproj",
-      "projectName": "CursoAspNetCore",
-      "projectPath": "D:\\Cursos Alura\\CursoAspNetCore\\CursoAspNetCore.csproj",
+      "projectUniqueName": "D:\\Cursos Alura\\CasaDoCodigo\\CasaDoCodigo.csproj",
+      "projectName": "CasaDoCodigo",
+      "projectPath": "D:\\Cursos Alura\\CasaDoCodigo\\CasaDoCodigo.csproj",
       "packagesPath": "C:\\Users\\rodol\\.nuget\\packages\\",
-      "outputPath": "D:\\Cursos Alura\\CursoAspNetCore\\obj\\",
+      "outputPath": "D:\\Cursos Alura\\CasaDoCodigo\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\rodol\\AppData\\Roaming\\NuGet\\NuGet.Config",

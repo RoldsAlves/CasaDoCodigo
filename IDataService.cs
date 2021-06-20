@@ -1,4 +1,4 @@
-﻿namespace CursoAspNetCore
+﻿namespace CasaDoCodigo
 {
     interface IDataService
     {
