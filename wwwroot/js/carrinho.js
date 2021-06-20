@@ -33,6 +33,8 @@
             type: 'POST',
             contentType: 'application/JSON',
             data: JSON.stringify(data)
+        }).done(function (response) {
+            location.reload();
         });
     }
 }
