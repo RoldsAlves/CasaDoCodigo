@@ -1,10 +1,26 @@
-﻿@model CarrinhoViewModel;
-
-@{ ViewData["Title"] = "Carrinho"; }
+﻿@{
+    ViewData["Title"] = "Carrinho";
+}
+@model CarrinhoViewModel;
 
 <h3>Meu Carrinho</h3>
-<form method="post" asp-action="carrinho"></form>
 
+<form method="post" asp-action="carrinho">
+</form>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="pull-right">
+            <a class="btn btn-success" asp-action="buscaprodutos">
+                Adicionar Produtos
+            </a>
+            <a class="btn btn-success" asp-action="cadastro">
+                Preencher Cadastro
+            </a>
+        </div>
+    </div>
+</div>
+<br />
 <div class="panel panel-default">
     <div class="panel-heading">
 
@@ -37,15 +53,18 @@
                 <div class="col-md-2 text-center">
                     <div class="input-group">
                         <span class="input-group-btn">
-                            <button class="btn btn-default">
-                                <span class="glyphicon-minus" onclick="carrinho.clickDecremento(this)"></span>
+                            <button class="btn btn-default"
+                                    onclick="carrinho.clickDecremento(this)">
+                                <span class="glyphicon-minus"></span>
                             </button>
                         </span>
                         <input type="text" value="@(item.Quantidade)"
-                               class="form-control text-center" onblur="carrinho.updateQuantidade(this)"/>
+                               class="form-control text-center" 
+                               onblur="carrinho.updateQuantidade(this)"/>
                         <span class="input-group-btn">
-                            <button class="btn btn-default">
-                                <span class="glyphicon-plus" onclick="carrinho.clickIncremento(this)"></span>
+                            <button class="btn btn-default"
+                                    onclick="carrinho.clickIncremento(this)">
+                                <span class="glyphicon-plus"></span>
                             </button>
                         </span>
                     </div>
@@ -56,7 +75,9 @@
                     </span>
                 </div>
             </div>
+
         }
+
     </div>
     <div class="panel-footer">
         <div class="row">
@@ -78,7 +99,7 @@
 <div class="row">
     <div class="col-md-12">
         <div class="pull-right">
-            <a class="btn btn-success" asp-action="carrossel">
+            <a class="btn btn-success" asp-action="buscaprodutos">
                 Adicionar Produtos
             </a>
             <a class="btn btn-success" asp-action="cadastro">
@@ -88,6 +109,9 @@
     </div>
 </div>
 
-@section Scripts{
-    <script src="~/js/carrinho.js"></script>
+@section Scripts
+{
+    <script src="~/js/carrinho.js">
+
+    </script>
 }

@@ -1,39 +1,39 @@
 ﻿using CasaDoCodigo.Models;
 using CasaDoCodigo.Repositories;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace CasaDoCodigo
 {
-    public partial class Startup
+    public class DataService : IDataService
     {
-        class DataService : IDataService
+        public async Task InicializaDBAsync(IServiceProvider provider)
         {
-            private readonly ApplicationContext context;
-            private readonly IProdutoRepository produtoRepository;
+            var contexto = provider.GetService<ApplicationContext>();
 
-            public DataService(ApplicationContext context, IProdutoRepository produtoRepository)
+            await contexto.Database.MigrateAsync();
+
+            if (await contexto.Set<Produto>().AnyAsync())
             {
-                this.context = context;
-                this.produtoRepository = produtoRepository;
+                return;
             }
 
-            public void InicializarDB()
-            {
-                context.Database.EnsureCreated();
-                List<Livro> livros = GetLivros();
+            List<Livro> livros = await GetLivrosAsync();
 
-                produtoRepository.SaveProdutos(livros);
-            }
-
-            private static List<Livro> GetLivros()
-            {
-                var json = File.ReadAllText("livros.json");
-                var livros = JsonConvert.DeserializeObject<List<Livro>>(json);
-                return livros;
-            }
+            var produtoRepository = provider.GetService<IProdutoRepository>();
+            await produtoRepository.SaveProdutosAsync(livros);
         }
 
+        private async Task<List<Livro>> GetLivrosAsync()
+        {
+            var json = await File.ReadAllTextAsync("livros.json");
+            return JsonConvert.DeserializeObject<List<Livro>>(json);
+        }
     }
 }

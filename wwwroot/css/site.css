@@ -3,6 +3,11 @@
     padding-bottom: 20px;
 }
 
+h3 {
+    font-weight: bold;
+    color: #f8965d;
+}
+
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
 .body-content {
@@ -60,7 +65,7 @@ textarea {
 }
 
 .img-produto-carrossel {
-    width: 100%;
+    width: 75%;
 }
 
 .img-produto-carrinho {
@@ -83,4 +88,15 @@ textarea {
 }
 
 .produto-nome {
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: #fff;
+}
+
+.glyphicon.glyphicon-chevron-left,
+.glyphicon.glyphicon-chevron-right {
+    color: #000;
+    margin-right: -120px;
+    margin-left: -120px;
 }

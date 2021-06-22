@@ -1,56 +1,66 @@
-﻿@model Cadastro;
- 
-@{ ViewData["Title"] = "Cadastro"; }
+﻿@{
+	ViewData["Title"] = "Cadastro";
+}
+
+@model Cadastro
 
 <h3>Cadastro</h3>
 
 <form asp-action="resumo" method="post">
-
+    
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="col-md-4">
                 <div class="form-group">
                     <label class="control-label" for="nomeCliente">Nome do Cliente</label>
-                    <input type="text" class="form-control" id="nomeCliente" placeholder="Nome do Cliente" asp-for="@Model.Nome">
-                    <span class="text-danger" asp-validation-for="@Model.Nome"></span>
+                    <input type="text" class="form-control" id="nomeCliente" placeholder="Nome do Cliente"
+                           asp-for="@Model.Nome">
+                    <span asp-validation-for="@Model.Nome" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label class="control-label" for="email">Email</label>
-                    <input type="email" class="form-control" id="email" placeholder="Email" asp-for="@Model.Email">
-                    <span class="text-danger" asp-validation-for="@Model.Email"></span>
+                    <input type="email" class="form-control" id="email" placeholder="Email"
+                           asp-for="@Model.Email">
+                    <span asp-validation-for="@Model.Email" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label class="control-label" for="telefone">Telefone</label>
-                    <input type="text" class="form-control" id="telefone" placeholder="Telefone" asp-for="@Model.Telefone">
-                    <span class="text-danger" asp-validation-for="@Model.Telefone"></span>
+                    <input type="text" class="form-control" id="telefone" placeholder="Telefone"
+                           asp-for="@Model.Telefone">
+                    <span asp-validation-for="@Model.Telefone" class="text-danger"></span>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
                     <label class="control-label" for="endereco">Endereço</label>
-                    <input type="text" class="form-control" id="endereco" placeholder="Endereço" asp-for="@Model.Endereco">
-                    <span class="text-danger" asp-validation-for="@Model.Endereco"></span>
+                    <input type="text" class="form-control" id="endereco" placeholder="Endereço"
+                           asp-for="@Model.Endereco">
+                    <span asp-validation-for="@Model.Endereco" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label class="control-label" for="complemento">Complemento</label>
-                    <input type="text" class="form-control" id="complemento" placeholder="Complemento" asp-for="@Model.Complemento">
-                    <span class="text-danger" asp-validation-for="@Model.Complemento"></span>
+                    <input type="text" class="form-control" id="complemento" placeholder="Complemento"
+                           asp-for="@Model.Complemento">
+                    <span asp-validation-for="@Model.Complemento" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label class="control-label" for="bairro">Bairro</label>
-                    <input type="text" class="form-control" id="bairro" placeholder="Bairro" asp-for="@Model.Bairro">
-                    <span class="text-danger" asp-validation-for="@Model.Bairro"></span>
+                    <input type="text" class="form-control" id="bairro" placeholder="Bairro"
+                           asp-for="@Model.Bairro">
+                    <span asp-validation-for="@Model.Bairro" class="text-danger"></span>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
                     <label class="control-label" for="municipio">Município</label>
-                    <input type="text" class="form-control" id="municipio" placeholder="Município" asp-for="@Model.Municipio">
-                    <span class="text-danger" asp-validation-for="@Model.Municipio"></span>
+                    <input type="text" class="form-control" id="municipio" placeholder="Município"
+                           asp-for="@Model.Municipio">
+                    <span asp-validation-for="@Model.Municipio" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label class="control-label" for="UF">UF</label>
-                    <select class="form-control single-select" name="UF" asp-for="@Model.UF">
+                    <select class="form-control single-select" name="UF"
+                            asp-for="@Model.UF">
                         <option selected value="">[Selecione o estado]</option>
                         <option value="AC">Acre</option>
                         <option value="AL">Alagoas</option>
@@ -80,16 +90,18 @@
                         <option value="SE">Sergipe</option>
                         <option value="TO">Tocantins</option>
                     </select>
-                    <span class="text-danger" asp-validation-for="@Model.UF"></span>
+                    <span asp-validation-for="@Model.UF" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label class="control-label" for="cep">CEP</label>
-                    <input type="text" class="form-control" id="cep" placeholder="CEP" asp-for="@Model.CEP">
-                    <span class="text-danger" asp-validation-for="@Model.CEP"></span>
+                    <input type="text" class="form-control" id="cep" placeholder="CEP"
+                           asp-for="@Model.CEP">
+                    <span asp-validation-for="@Model.CEP" class="text-danger"></span>
+
                 </div>
 
                 <div class="form-group">
-                    <a class="btn btn-success" asp-action="carrossel">
+                    <a class="btn btn-success" asp-action="buscaprodutos">
                         Continuar Comprando
                     </a>
                 </div>
@@ -102,4 +114,6 @@
             </div>
         </div>
     </div>
+
+
 </form>

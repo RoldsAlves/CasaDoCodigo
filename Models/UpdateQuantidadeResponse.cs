@@ -11,10 +11,10 @@ namespace CasaDoCodigo.Models
         public UpdateQuantidadeResponse(ItemPedido itemPedido, CarrinhoViewModel carrinhoViewModel)
         {
             ItemPedido = itemPedido;
-            this.carrinhoViewModel = carrinhoViewModel;
+            CarrinhoViewModel = carrinhoViewModel;
         }
 
         public ItemPedido ItemPedido { get; }
-        public CarrinhoViewModel carrinhoViewModel { get; }
+        public CarrinhoViewModel CarrinhoViewModel { get; }
     }
 }

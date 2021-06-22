@@ -1,30 +1,34 @@
-﻿@model IList<CasaDoCodigo.Models.Produto>;
- 
-@{ 
-    ViewData["Title"] = "Carrossel";
+﻿@{
+	ViewData["Title"] = "Carrossel";
 }
-<h3>Catálogo</h3>
 
-@*@foreach(var produto in Model) 
-{
-    <div>@produto.Nome</div>
-}*@
+@model List<Produto>;
+
+<h3>Catálogo</h3>
 
 <div id="my-carousel" class="carousel slide" data-ride="carousel">
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
 
-        @{ 
+        @{
             const int TAMANHO_PAGINA = 4;
+
             int paginas = (int)Math.Ceiling((double)Model.Count() / TAMANHO_PAGINA);
         }
-        @for(int pagina = 0; pagina < paginas; pagina++)
+
+        @for (int pagina = 0; pagina < paginas; pagina++)
         {
+
             <div class="item @(pagina == 0 ? "active" : "")">
                 <div class="row">
-                    @{ var produtoDaPagina = Model.Skip(pagina).Take(TAMANHO_PAGINA); }
-                    @foreach (var produto in produtoDaPagina)
+
+                    @{
+                        var produtosDaPagina = Model.Skip(pagina * TAMANHO_PAGINA).Take(TAMANHO_PAGINA);
+                    }
+
+                    @foreach (var produto in produtosDaPagina)
                     {
+
                         <div class="col-md-3 col-sm-3 col-lg-3">
                             <div class="panel panel-default">
                                 <div class="panel-body">
@@ -34,14 +38,18 @@
                                     <div class="produto-nome">@produto.Nome</div>
                                     <div><h4><strong>R$ @produto.Preco</strong></h4></div>
                                     <div class="text-center">
-                                        <a asp-action="carrinho" asp-route-codigo="@produto.Codigo" class="btn btn-success">Adicionar</a>
+                                        <a asp-action="carrinho"
+										   asp-route-codigo="@produto.Codigo"
+										   class="btn btn-success">Adicionar</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     }
+
                 </div>
             </div>
+
         }
     </div>
 

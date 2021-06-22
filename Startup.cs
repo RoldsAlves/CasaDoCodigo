@@ -1,19 +1,30 @@
-using CasaDoCodigo.Models;
+﻿using CasaDoCodigo.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Logging;
+using Serilog;
 using System;
-using CasaDoCodigo.Repositories;
 
 namespace CasaDoCodigo
 {
-    public partial class Startup
+    //DB 1): Startup
+    #region Startup
+    //Em Startup configuramos o Entity Framework
+    //para usar o banco de dados 
+    #endregion
+    public class Startup
     {
-        public Startup(IConfiguration configuration)
+        private readonly ILoggerFactory _loggerFactory;
+
+        public Startup(ILoggerFactory loggerFactory,
+            IConfiguration configuration)
         {
+            _loggerFactory = loggerFactory;
             Configuration = configuration;
         }
 
@@ -22,68 +33,81 @@ namespace CasaDoCodigo
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews().AddNewtonsoftJson();
-            services.AddControllersWithViews();
-            services.AddApplicationInsightsTelemetry();
+            services.AddLogging(loggingBuilder => loggingBuilder.AddSerilog(dispose: true));
             services.AddMvc();
             services.AddDistributedMemoryCache();
             services.AddSession();
 
             string connectionString = Configuration.GetConnectionString("Default");
+
+            //DB 2): Configuração EF+Sql Server
+            #region Configuração EF+Sql Server
+            //O banco de dados SQL Server
+            //armazena dados do e-commerce
+            //(produtos, pedidos, cadastro, etc.)
+            //vide SQL Server Object Explorer 
+            #endregion
             services.AddDbContext<ApplicationContext>(options =>
                 options.UseSqlServer(connectionString)
             );
 
+            //DB 3): Identity + SQLite
+            #region SQLite
+            //1.Relacional
+            //2.Usa linguagem SQL 
+            //3.pequeno
+            //4.rápido
+            //5.independente
+            //6.confiável
+            //7.cheio de recursos.
+            //8.mais usado no mundo 
+            //https://www.sqlite.org/index.html
+            #endregion
+
+            //DB 4): EF + SQLite?
+            #region EF com outros bancos
+            //O Entity Framework pode trabalhar com
+            //diversos bancos de dados
+            //https://docs.microsoft.com/pt-br/ef/core/providers/index
+            #endregion
+
             services.AddTransient<IDataService, DataService>();
+            services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddTransient<IHttpHelper, HttpHelper>();
             services.AddTransient<IProdutoRepository, ProdutoRepository>();
             services.AddTransient<IPedidoRepository, PedidoRepository>();
             services.AddTransient<ICadastroRepository, CadastroRepository>();
-            services.AddTransient<IItemPedidoRepository, ItemPedidoRepository>();
-            //services.AddTransient<ICatalogo, Catalogo>();
-            //services.AddTransient<IRelatorio, Relatorio>();
-
-            //services.AddScoped<ICatalogo, Catalogo>();
-            //services.AddScoped<IRelatorio, Relatorio>();
-
-            //var catalogo = new Catalogo();
-            //services.AddSingleton<ICatalogo>(catalogo);
-            //services.AddSingleton<IRelatorio>(new Relatorio(catalogo));
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider serviceProvider)
+
+        // Este método é chamado pelo runtime.
+        // Use este método para configurar o pipeline de requisições HTTP.
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env,
+            IServiceProvider serviceProvider)
         {
+            _loggerFactory.AddSerilog();
+
             if (env.IsDevelopment())
             {
+                app.UseBrowserLink();
                 app.UseDeveloperExceptionPage();
             }
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
             }
-            //ICatalogo catalogo = serviceProvider.GetService<ICatalogo>();
-            //IRelatorio relatorio = serviceProvider.GetService<IRelatorio>();
-            //app.Run(async (context) =>
-            //{
-            //    await relatorio.Imprimir(context);
-            //});
-            app.UseHttpsRedirection();
+
             app.UseStaticFiles();
             app.UseSession();
-            app.UseRouting();
-
-            app.UseAuthorization();
-
-            app.UseEndpoints(endpoints =>
+            app.UseMvc(routes =>
             {
-                endpoints.MapControllerRoute(
+                routes.MapRoute(
                     name: "default",
-                    pattern: "{controller=Pedido}/{action=Carrossel}/{codigo?}");
+                    template: "{controller=Pedido}/{action=BuscaProdutos}/{codigo?}");
             });
 
-            serviceProvider.GetService<IDataService>().InicializarDB();
+            var dataService = serviceProvider.GetRequiredService<IDataService>();
+            dataService.InicializaDBAsync(serviceProvider).Wait();
         }
     }
 }
