@@ -3,6 +3,10 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <RootNamespace>CasaDoCodigo</RootNamespace>
+    <ApplicationIcon>wwwroot\favicon.ico</ApplicationIcon>
+    <OutputType>Exe</OutputType>
+    <StartupObject />
+    <Win32Resource />
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
