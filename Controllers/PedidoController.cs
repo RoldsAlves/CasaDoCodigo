@@ -1,7 +1,9 @@
-﻿using CasaDoCodigo.Models;
+﻿using CasaDoCodigo.Areas.Identity.Data;
+using CasaDoCodigo.Models;
 using CasaDoCodigo.Models.ViewModels;
 using CasaDoCodigo.Repositories;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -14,12 +16,14 @@ namespace CasaDoCodigo.Controllers
     {
         private readonly IProdutoRepository produtoRepository;
         private readonly IPedidoRepository pedidoRepository;
+        private readonly UserManager<AppIdentityUser> userManager;
 
         public PedidoController(IProdutoRepository produtoRepository,
-            IPedidoRepository pedidoRepository)
+            IPedidoRepository pedidoRepository, UserManager<AppIdentityUser> userManager)
         {
             this.produtoRepository = produtoRepository;
             this.pedidoRepository = pedidoRepository;
+            this.userManager = userManager;
         }
 
         public async Task<IActionResult> Carrossel()
@@ -59,6 +63,10 @@ namespace CasaDoCodigo.Controllers
                 return RedirectToAction("Carrossel");
             }
 
+            var usuairo = await userManager.GetUserAsync(this.User);
+
+            pedido.Cadastro.Email = usuairo.Email;
+
             return View(pedido.Cadastro);
         }
 
@@ -71,6 +79,7 @@ namespace CasaDoCodigo.Controllers
             {
                 return View(await pedidoRepository.UpdateCadastroAsync(cadastro));
             }
+
             return RedirectToAction("Cadastro");
         }
 
