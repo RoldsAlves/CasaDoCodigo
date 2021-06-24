@@ -63,9 +63,17 @@ namespace CasaDoCodigo.Controllers
                 return RedirectToAction("Carrossel");
             }
 
-            var usuairo = await userManager.GetUserAsync(this.User);
+            var usuario = await userManager.GetUserAsync(this.User);
 
-            pedido.Cadastro.Email = usuairo.Email;
+            pedido.Cadastro.Email = usuario.Email;
+            pedido.Cadastro.Nome = usuario.Nome;
+            pedido.Cadastro.Telefone = usuario.Telefone;
+            pedido.Cadastro.Endereco = usuario.Endereco;
+            pedido.Cadastro.Bairro = usuario.Bairro;
+            pedido.Cadastro.Complemento = usuario.Complemento;
+            pedido.Cadastro.Municipio = usuario.Municipio;
+            pedido.Cadastro.UF = usuario.UF;
+            pedido.Cadastro.CEP = usuario.CEP;
 
             return View(pedido.Cadastro);
         }
@@ -77,6 +85,21 @@ namespace CasaDoCodigo.Controllers
         {
             if (ModelState.IsValid)
             {
+
+                var usuario = await userManager.GetUserAsync(this.User);
+
+                usuario.Email = cadastro.Email;
+                usuario.Nome = cadastro.Nome;
+                usuario.Telefone = cadastro.Telefone;
+                usuario.Endereco = cadastro.Endereco;
+                usuario.Bairro = cadastro.Bairro;
+                usuario.Complemento = cadastro.Complemento;
+                usuario.Municipio = cadastro.Municipio;
+                usuario.UF = cadastro.UF;
+                usuario.CEP = cadastro.CEP;
+
+                await userManager.UpdateAsync(usuario);
+
                 return View(await pedidoRepository.UpdateCadastroAsync(cadastro));
             }
 
