@@ -19,7 +19,8 @@ namespace CasaDoCodigo.Controllers
         private readonly UserManager<AppIdentityUser> userManager;
 
         public PedidoController(IProdutoRepository produtoRepository,
-            IPedidoRepository pedidoRepository, UserManager<AppIdentityUser> userManager)
+            IPedidoRepository pedidoRepository,
+            UserManager<AppIdentityUser> userManager)
         {
             this.produtoRepository = produtoRepository;
             this.pedidoRepository = pedidoRepository;
@@ -66,11 +67,11 @@ namespace CasaDoCodigo.Controllers
             var usuario = await userManager.GetUserAsync(this.User);
 
             pedido.Cadastro.Email = usuario.Email;
-            pedido.Cadastro.Nome = usuario.Nome;
             pedido.Cadastro.Telefone = usuario.Telefone;
+            pedido.Cadastro.Nome = usuario.Nome;
             pedido.Cadastro.Endereco = usuario.Endereco;
-            pedido.Cadastro.Bairro = usuario.Bairro;
             pedido.Cadastro.Complemento = usuario.Complemento;
+            pedido.Cadastro.Bairro = usuario.Bairro;
             pedido.Cadastro.Municipio = usuario.Municipio;
             pedido.Cadastro.UF = usuario.UF;
             pedido.Cadastro.CEP = usuario.CEP;
@@ -85,24 +86,22 @@ namespace CasaDoCodigo.Controllers
         {
             if (ModelState.IsValid)
             {
-
                 var usuario = await userManager.GetUserAsync(this.User);
 
-                usuario.Email = cadastro.Email;
-                usuario.Nome = cadastro.Nome;
-                usuario.Telefone = cadastro.Telefone;
-                usuario.Endereco = cadastro.Endereco;
-                usuario.Bairro = cadastro.Bairro;
+                usuario.Email       = cadastro.Email;
+                usuario.Telefone    = cadastro.Telefone;
+                usuario.Nome        = cadastro.Nome;
+                usuario.Endereco    = cadastro.Endereco;
                 usuario.Complemento = cadastro.Complemento;
-                usuario.Municipio = cadastro.Municipio;
-                usuario.UF = cadastro.UF;
-                usuario.CEP = cadastro.CEP;
+                usuario.Bairro      = cadastro.Bairro;
+                usuario.Municipio   = cadastro.Municipio;
+                usuario.UF          = cadastro.UF;
+                usuario.CEP         = cadastro.CEP;
 
                 await userManager.UpdateAsync(usuario);
 
                 return View(await pedidoRepository.UpdateCadastroAsync(cadastro));
             }
-
             return RedirectToAction("Cadastro");
         }
 

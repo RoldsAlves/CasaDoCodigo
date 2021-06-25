@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace CasaDoCodigo
 {
-    //MELHORIA: 8) dados do cadastro gravados na sessão
+    //TAREFA 05: INJETAR UserManager PARA OBTER clienteId
     public class HttpHelper : IHttpHelper
     {
         private readonly IHttpContextAccessor contextAccessor;
@@ -15,9 +15,9 @@ namespace CasaDoCodigo
 
         public IConfiguration Configuration { get; }
 
-        public HttpHelper(IHttpContextAccessor contextAccessor, 
-            IConfiguration configuration, 
-            UserManager<AppIdentityUser> userManager)
+        public HttpHelper(IHttpContextAccessor contextAccessor
+            , IConfiguration configuration
+            , UserManager<AppIdentityUser> userManager)
         {
             this.contextAccessor = contextAccessor;
             Configuration = configuration;
@@ -27,13 +27,6 @@ namespace CasaDoCodigo
         public int? GetPedidoId()
         {
             return contextAccessor.HttpContext.Session.GetInt32($"pedidoId_{GetClienteId()}");
-        }
-
-        private string GetClienteId()
-        {
-            var claimsPrincipal = contextAccessor.HttpContext.User;
-            var clienteId = userManager.GetUserId(claimsPrincipal);
-            return clienteId;
         }
 
         public void SetPedidoId(int pedidoId)
@@ -46,20 +39,10 @@ namespace CasaDoCodigo
             contextAccessor.HttpContext.Session.Remove($"pedidoId_{GetClienteId()}");
         }
 
-        public void SetCadastro(Cadastro cadastro)
+        private string GetClienteId()
         {
-            string json = JsonConvert.SerializeObject(cadastro.GetClone());
-            contextAccessor.HttpContext.Session.SetString("cadastro", json);
-        }
-
-        public Cadastro GetCadastro()
-        {
-            string json = contextAccessor.HttpContext.Session.GetString("cadastro");
-            if (string.IsNullOrWhiteSpace(json))
-                return new Cadastro();
-
-            return JsonConvert.DeserializeObject<Cadastro>(json);
+            var claimsPrincipal = contextAccessor.HttpContext.User;
+            return userManager.GetUserId(claimsPrincipal);
         }
     }
-
 }
